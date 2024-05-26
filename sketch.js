@@ -1,3 +1,5 @@
+//Sketch criado por Gustavo Assis e por Chat GPT 4.0
+//Atrator de Lorenz
 let particles = [];
 let sigma = 10;
 let rho = 28;
