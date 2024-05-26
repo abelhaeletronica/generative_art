@@ -1,3 +1,6 @@
+//Recurring Spiral
+//Done by Gustavo Assis
+//and Chat GPT 4.0
 let Bubbles = [];
 let increment = 0;
 let a = 1; // Coeficiente para o cálculo do raio

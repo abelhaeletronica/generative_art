@@ -1,3 +1,6 @@
+//Lorenz Particles Animation
+//Created by Gustavo Assis
+//and Chat GPT 4.0
 let particles = [];
 let sigma = 10;
 let rho = 28;
