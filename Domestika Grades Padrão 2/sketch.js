@@ -1,3 +1,6 @@
+//Modelo de grades com círculos que mudam 
+//de raio dinamicamente 
+//Aula na Domestika 
 let nb = 20;
 let dim = 0;
 let margin = 20;
@@ -27,7 +30,6 @@ function draw() {
       let y = margin + dim / 2 + j * dim;
       let frequencia =  f * sin (frameCount + dist (width / 2, height / 2, x, y));
 
-      
       circle(x , y , frequencia * dim);
       //rect(dim / 2 + i * dim, dim / 2 + j * dim, 0.6 * dim, 0.4 * dim)
     }
