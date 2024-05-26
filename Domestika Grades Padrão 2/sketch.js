@@ -1,3 +1,6 @@
+//Modelo de grades com círculos que mudam 
+//de raio dinamicamente 
+//Aula na Domestika 
 let nb = 20;
 let dim = 0;
 let margin = 20;
