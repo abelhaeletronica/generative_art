@@ -1,61 +1,66 @@
-//Sketch criado por Gustavo Assis e por Chat GPT 4.0
-//Atrator de Lorenz
-let particles = [];
-let sigma = 10;
-let rho = 28;
-let beta = 8.0 / 3.0;
-let dt = 0.003; // Reduced time step for slower movement
+let Bubbles = [];
+let increment = 0;
+let a = 1; // Coeficiente para o cálculo do raio
+let b = 0.007; // Constante de crescimento para o logaritmo natural
+let zoom = 1; // Fator de zoom inicial
+let zoomIncrement = 0.01; // Incremento do zoom
 
 function setup() {
-  createCanvas(800, 800);
-  for (let i = 0; i < 600; i++) { //número de partículas
-    particles[i] = new Particle(random(-10, 10), random(-10, 10), random(0, 30));
-  }
-  background(0);
+  createCanvas(innerWidth, innerHeight);
+  angleMode(DEGREES);
+  background(225);
 }
 
 function draw() {
-  // Increase the opacity of the fading rectangle to shorten trail duration
-  fill(0, 60);
-  rect(0, 0, width, height);
-  
-  for (let i = 0; i < particles.length; i++) {
-    particles[i].update();
-    particles[i].show();
+  background(225); // Redesenhar o fundo para limpar frames anteriores
+  increment++;
+  if (increment > 2) {
+    Bubbles.push(new Bubble());
+    increment = 0;
+  }
+
+  translate(innerWidth / 2, innerHeight / 2);
+  scale(zoom); // Aplica o zoom atual
+  translate(-innerWidth / 2, -innerHeight / 2);
+
+  for (let i = 0; i < Bubbles.length; i++) {
+    Bubbles[i].update();
+    Bubbles[i].show();
+
+    if (Bubbles[i].gone()) {
+      zoom += zoomIncrement; // Aumenta o zoom
+      Bubbles.splice(i, 1);
+      i--; // Ajusta o índice após remover a bolha
+    }
   }
 }
 
-class Particle {
-  constructor(x, y, z) {
-    this.pos = createVector(x, y, z);
-    this.history = [];
+class Bubble {
+  constructor() {
+    this.angle = 1; // Inicializa o ângulo de cada bolha
+    this.r = a * exp(b * this.angle); // Raio inicial baseado na espiral de Fibonacci
   }
 
   update() {
-    let dx = (sigma * (this.pos.y - this.pos.x)) * dt;
-    let dy = (this.pos.x * (rho - this.pos.z) - this.pos.y) * dt;
-    let dz = (this.pos.x * this.pos.y - beta * this.pos.z) * dt;
-    this.pos.x += dx;
-    this.pos.y += dy;
-    this.pos.z += dz;
-
-    this.history.push(createVector(this.pos.x, this.pos.y, this.pos.z));
-    if (this.history.length > 5) { // Reduce the number of historical positions
-      this.history.splice(0, 1);
-    }
+    this.angle++; // Aumenta o ângulo para a próxima posição na espiral
+    this.r = a * exp(b * this.angle); // Atualiza o raio conforme o ângulo aumenta
   }
 
   show() {
-    stroke(255);
+    push();
+    translate(innerWidth / 2, innerHeight / 2);
+    rotate(this.angle);
+    let x = this.r * cos(this.angle);
+    let y = this.r * sin(this.angle);
+
+    //stroke(0);
+    strokeWeight( 0.3 * 1 / zoom);
     noFill();
-    beginShape();
-    for (let i = 0; i < this.history.length; i++) {
-      let v = this.history[i];
-      // Zoom out by adjusting the mapping
-      let x = map(v.x, -30, 30, 0, width);
-      let y = map(v.y, -40, 40, height, 0);
-      vertex(x, y);
-    }
-    endShape();
+    ellipse(x, y, this.r * 1); // Desenha a bolha com o tamanho reduzido para visibilidade
+    pop();
+  }
+
+  gone() {
+    return this.r > innerWidth * 1.5; // Define a condição de desaparecimento quando a bolha ultrapassa 1.5 vezes a largura da tela
   }
 }
