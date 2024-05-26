@@ -25,7 +25,7 @@ I am keen on collaborating with other artists, programmers, and researchers. If 
 ## Contact
 
 - **Email**: guteoassis@gmail.com
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/gustavo-t-assis/)
-- **Instagram**: [Your Instagram Handle](https://www.instagram.com/gustavo.assis.art/)
+- **LinkedIn**: [My LinkedIn Profile](https://www.linkedin.com/in/gustavo-t-assis/)
+- **Instagram**: [My Instagram Handle](https://www.instagram.com/gustavo.assis.art/)
 
 Thank you for visiting my repository. Let's push the boundaries of what art and technology can achieve together!
