@@ -23,11 +23,11 @@ function draw() {
     
     for (let i = 0; i < nb; i++) {
       
-      let x = margin + dim / 2 + i * dim;
-      let y = margin + dim / 2 + j * dim;
+      //let x = margin + dim / 2 + i * dim;
+      //let y = margin + dim / 2 + j * dim;
+      
       let frequencia =  f * sin (frameCount + dist (width / 2, height / 2, x, y));
 
-      
       circle(x , y , frequencia * dim);
       //rect(dim / 2 + i * dim, dim / 2 + j * dim, 0.6 * dim, 0.4 * dim)
     }
