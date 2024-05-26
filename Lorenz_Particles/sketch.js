@@ -1,3 +1,6 @@
+//Lorenz Particles
+//Created by Gustavo Assis (abelhaeletronica)
+//and CHAT GPT 4.0
 let Bubbles = [];
 let increment = 0;
 let a = 1; // Coeficiente para o cálculo do raio
